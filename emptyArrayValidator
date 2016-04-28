@@ -1,0 +1,21 @@
+/**
+ * Validates form field, it's not valid if ng-model is null or empty array
+ * @constructor
+ * @author <petran> [calafatidis@gmail.com]
+ */
+
+function emptyArray() {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, elem, attrs, ctrl) {
+            ctrl.$validators.isEmpty = function(modelValue, viewValue) {
+                if (modelValue && modelValue.length > 0 ) {
+                    return true;
+                } else {
+                    return false;
+                }
+            };
+        }
+    }
+}
